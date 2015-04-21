@@ -1,5 +1,5 @@
 /**
- * Reads gpx files in provided directory. Parses gpx file and uses maps.googleapis.com/maps/api/geocode to find street name and postcode
+ * Reads gpx files in provided directory then parses files and uses maps.googleapis.com/maps/api/geocode to find street name and postcode
  */
 import groovy.json.JsonSlurper
 import groovy.io.FileType
@@ -33,7 +33,7 @@ dir.eachFile(FileType.FILES) { file ->
             return
         }
 
-        def res = printAddress(trkpt).results[0].address_components
+        def res = toAddress(trkpt).results[0].address_components
 
         def streetname = res.findAll {
             it.types.contains('route')
@@ -51,11 +51,9 @@ dir.eachFile(FileType.FILES) { file ->
         print '.'
     }
 
-    // File newFile = file.name.replace('.gpx', '.bkp')
-    //  file.renameTo(new File(file.name.replace('.gpx', '.bkp')))
 }
 
-def printAddress(trkpt) {
+def toAddress(trkpt) {
 
     def status = false
 
@@ -67,7 +65,6 @@ def printAddress(trkpt) {
         status = object.status == 'OK'
         if (!status) {
             sleep(5)
-            // println object.status
         }
     }
 
