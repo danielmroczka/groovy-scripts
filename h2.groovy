@@ -2,7 +2,7 @@
 @Grab('com.h2database:h2:1.4.186')
 import groovy.sql.Sql
 
-def sql = Sql.newInstance("jdbc:h2:hello", "sa", "sa", "org.h2.Driver")
+def sql = Sql.newInstance("jdbc:h2:./hello", "sa", "sa", "org.h2.Driver")
 // DDL
 sql.execute("CREATE TABLE IF NOT EXISTS FOO (id int, value text)")
 

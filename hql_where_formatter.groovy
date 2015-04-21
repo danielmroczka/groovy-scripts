@@ -10,7 +10,7 @@ def whereFlag
 
 theInfoFile.eachLine { line ->
 
-    if (line?.trim().size() == 0) {
+    if (line?.trim()?.size() == 0) {
         return null
 
     } else {
