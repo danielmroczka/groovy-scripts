@@ -1,8 +1,9 @@
 /**
  * Reads gpx files in provided directory then parses files and uses maps.googleapis.com/maps/api/geocode to find street name and postcode
  */
-import groovy.json.JsonSlurper
+
 import groovy.io.FileType
+import groovy.json.JsonSlurper
 
 def dir = new File('j:/download/gpx/')
 

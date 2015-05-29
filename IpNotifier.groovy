@@ -1,5 +1,7 @@
 @Grab(group = 'org.apache.commons', module = 'commons-email', version = '1.3.2')
 import org.apache.commons.mail.HtmlEmail
+@Grab(group = 'org.apache.commons', module = 'commons-email', version = '1.3.2')
+import org.apache.commons.mail.HtmlEmail
 
 /*
     Collects IP Address and sends it by the email
@@ -13,9 +15,6 @@ import org.apache.commons.mail.HtmlEmail
 
     add the groovy path_to_groovy_script path_to_settings into /etc/rc.local file
 */
-
-import org.apache.commons.mail.HtmlEmail
-
 def file
 
 if (args.length == 1) {

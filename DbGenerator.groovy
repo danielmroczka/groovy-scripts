@@ -1,4 +1,5 @@
-@Grab('mysql:mysql-connector-java:5.1.34') @GrabConfig(systemClassLoader = true)
+@Grab('mysql:mysql-connector-java:5.1.34')
+@GrabConfig(systemClassLoader = true)
 @Grab(group = 'com.h2database', module = 'h2', version = '1.4.185')
 import groovy.sql.Sql
 
