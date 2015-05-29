@@ -1,7 +1,7 @@
 import java.util.jar.JarFile  
 import groovy.io.FileType
   
-public static void main(xString[] args) {
+public static void main(String[] args) {
     if (args.length == 0) {
         list('.')
     } else {
