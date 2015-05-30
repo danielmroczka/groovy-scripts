@@ -1,7 +1,3 @@
-/**
- * Created by daniel on 2015-04-28.
- */
-
 @Grab(group = 'com.jcraft', module = 'jsch', version = '0.1.52')
 @Grab(group = 'org.apache.ant', module = 'ant-jsch', version = '1.9.4')
 

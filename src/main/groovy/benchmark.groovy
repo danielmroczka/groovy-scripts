@@ -1,7 +1,3 @@
-/**
- * Created by daniel on 2015-04-28.
- */
-
 def benchmark = { closure ->
     start = System.nanoTime()
     closure.call()

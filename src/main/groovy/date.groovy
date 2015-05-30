@@ -7,6 +7,8 @@ def from = new GregorianCalendar(2014, JUNE, 29)
 
 use(TimeCategory) {
     def duration = now - from
-    print "Days: ${duration}, Weeks: ${duration / 7}, etc."
+    println "Days: ${duration}"
+    println "Weeks: ${(int) duration / 7} and ${duration - 7 * ((int) duration / 7)} days"
+    println "Hours: ${duration * 24} etc."
 
 }

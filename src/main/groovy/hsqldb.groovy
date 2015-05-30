@@ -4,6 +4,9 @@ import org.hsqldb.Server
 @GrabConfig(systemClassLoader = true)
 @Grab('org.hsqldb:hsqldb:2.3.0')
 import org.hsqldb.Server
+@GrabConfig(systemClassLoader = true)
+@Grab('org.hsqldb:hsqldb:2.3.0')
+import org.hsqldb.Server
 
 class DBUtil {
     def ddls = [
