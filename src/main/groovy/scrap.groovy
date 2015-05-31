@@ -1,11 +1,5 @@
 @Grab(group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.7.2')
 import groovyx.net.http.*
-@Grab(group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.7.2')
-import groovyx.net.http.*
-@Grab(group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.7.2')
-import groovyx.net.http.*
-@Grab(group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.7.2')
-import groovyx.net.http.*
 
 def http = new HTTPBuilder('http://www.foxebook.net/page/1')
 
@@ -54,4 +48,5 @@ def gotoBook(url) {
     //     ) { resp, reader -> println resp.getContext().getAttribute('meta') }
 
 }
-//println html."**".div[0]
+
+println html

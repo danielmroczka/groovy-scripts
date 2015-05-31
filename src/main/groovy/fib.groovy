@@ -1,5 +1,4 @@
-// 
-
+#!/usr/bin/groovy
 long fib(long i) {
     i <= 2 ? 1 : fib(i - 2) + fib(i - 1);
 }

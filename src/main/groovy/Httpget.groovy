@@ -1,13 +1,9 @@
-@Grab(group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.7')
+@Grab(group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.7.2')
 import groovyx.net.http.HTTPBuilder
-@Grab(group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.7')
-
-import groovyx.net.http.HTTPBuilder
-
 import static groovyx.net.http.ContentType.HTML
 import static groovyx.net.http.Method.GET
 
-def http = new HTTPBuilder('https://www.youtube.com/watch?v=RTQ9Ct5C1C8')
+def http = new HTTPBuilder('https://www.youtube.com/watch?v=RnqAXuLZlaE')
 
 http.request(GET, HTML) { req ->
     // uri.path = 'watch?v=RTQ9Ct5C1C8' // overrides any path in the default URL
