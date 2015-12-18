@@ -1,5 +1,8 @@
 @Grab(group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.7.2')
 import groovyx.net.http.HTTPBuilder
+@Grab(group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.7.2')
+import groovyx.net.http.HTTPBuilder
+
 import static groovyx.net.http.ContentType.HTML
 import static groovyx.net.http.Method.GET
 

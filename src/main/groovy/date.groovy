@@ -3,7 +3,7 @@ import groovy.time.TimeCategory
 import static java.util.Calendar.JUNE
 
 def now = new GregorianCalendar()
-def from = new GregorianCalendar(2014, JUNE, 29)
+def from = new GregorianCalendar(2014, JUNE, 29, 11, 30)
 
 use(TimeCategory) {
     def duration = now - from
