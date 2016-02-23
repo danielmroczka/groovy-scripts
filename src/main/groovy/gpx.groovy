@@ -1,14 +1,18 @@
 /**
+ * Author: Daniel Mroczka
  * Reads gpx files in provided directory then parses files and uses maps.googleapis.com/maps/api/geocode to find street name and postcode
  */
 
+
 import groovy.io.FileType
 import groovy.json.JsonSlurper
+import groovy.time.TimeCategory
 
-def dir = new File('j:/download/gpx/')
+def dir = new File('d:/download/gpx/')
 
 Set zip = []
 Set street = []
+Set cities = []
 
 dir.eachFile(FileType.FILES) { file ->
     if (!file.name.endsWith('.gpx')) {
@@ -16,21 +20,17 @@ dir.eachFile(FileType.FILES) { file ->
     }
     println "Processing file: " + file
 
-
     def log = new File(dir, file.name.replace('.gpx', '.log'))
     log.text = ''
 
-
     def xml = new XmlSlurper().parseText(file.text)
 
+    def lastPos, lastStreetName, startDate, endDate, startTrkpt
 
-
-    def lastPos
 
     xml.trk.trkseg.trkpt.each { trkpt ->
 
-
-        if (lastPos && dist(trkpt, lastPos) < 50) {
+        if (lastPos && dist(trkpt, lastPos) < 10) {
             return
         }
 
@@ -40,18 +40,42 @@ dir.eachFile(FileType.FILES) { file ->
             it.types.contains('route')
         }.collect { it.long_name }
 
+        def city = res.findAll {
+            it.types.contains('locality')
+        }.collect { it.long_name }
+
         def postalcode = res.findAll { it.types.contains('postal_code') }.collect({ it.long_name })
 
-        log.append(postalcode[0] + ', ' + streetname[0] + '\n')
+        if (lastStreetName != streetname[0]) {
+            if (lastStreetName != null) {
+                def distance = dist(trkpt, startTrkpt).round(1)
+                endDate = parseDate(trkpt)
+                log.append(distance + ', ' + TimeCategory.minus(endDate, startDate).seconds + '\n')
+            }
+            startTrkpt = trkpt
+            log.append(postalcode[0] + ', ' + streetname[0] + ', ' + city[0] + ', ')
+            startDate = parseDate(trkpt)
+
+        }
+        lastStreetName = streetname[0];
 
         zip.add(postalcode[0])
         street.add(streetname[0])
+        cities.add(city[0])
 
         lastPos = trkpt
 
         print '.'
     }
 
+    def distance = dist(lastPos, startTrkpt).round(1)
+    endDate = parseDate(startTrkpt)
+    log.append(distance + ', ' + TimeCategory.minus(endDate, startDate).seconds + '\n')
+
+}
+
+def parseDate(trkpt) {
+    Date.parse("yyyy-MM-dd'T'HH:mm:ss'Z'", trkpt.time.text())    
 }
 
 def toAddress(trkpt) {
@@ -72,6 +96,13 @@ def toAddress(trkpt) {
     return object
 }
 
+/**
+ * Returns distance in meters
+ *
+ * @param trkpt1
+ * @param trkpt2
+ * @return
+ */
 double dist(trkpt1, trkpt2) {
     def long1 = Double.parseDouble(trkpt1.@lon.text())
     def long2 = Double.parseDouble(trkpt2.@lon.text())
@@ -93,6 +124,6 @@ double dist(trkpt1, trkpt2) {
 println ''
 println zip
 println street
+println cities
 println ''
 println 'Done'
-

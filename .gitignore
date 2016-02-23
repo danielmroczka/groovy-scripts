@@ -7,4 +7,6 @@
 *.ear
 *.log
 *.db
+.gradle
+target
 
