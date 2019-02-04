@@ -1,7 +1,5 @@
 @Grab(group = 'org.apache.commons', module = 'commons-email', version = '1.3.2')
 import org.apache.commons.mail.HtmlEmail
-@Grab(group = 'org.apache.commons', module = 'commons-email', version = '1.3.2')
-import org.apache.commons.mail.HtmlEmail
 
 def email = new HtmlEmail();
 email.setHostName("smtp.gmail.com");

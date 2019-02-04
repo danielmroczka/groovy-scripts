@@ -2,10 +2,6 @@
         @Grab(group = 'org.codehaus.geb', module = 'geb-spock', version = '0.7.2')
 )
 import geb.Browser
-@Grapes(
-        @Grab(group = 'org.codehaus.geb', module = 'geb-spock', version = '0.7.2')
-)
-import geb.Browser
 
 Browser.drive {
     go "http://myapp.com/login"

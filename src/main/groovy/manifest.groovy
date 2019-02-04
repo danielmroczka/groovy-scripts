@@ -2,7 +2,7 @@ import groovy.io.FileType
 
 import java.util.jar.JarFile
 
-public static void main(String[] args) {
+static void main(String[] args) {
     if (args.length == 0) {
         list('.')
     } else {
