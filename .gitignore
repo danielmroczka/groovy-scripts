@@ -1,12 +1,3 @@
-*.class
-*.iml
+!*.groovy
+!.gitignore
 .idea
-# Package Files #
-*.jar
-*.war
-*.ear
-*.log
-*.db
-.gradle
-target
-
