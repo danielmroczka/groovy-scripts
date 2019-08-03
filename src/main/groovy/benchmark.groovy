@@ -1,12 +1,12 @@
 def benchmark = { closure ->
-    start = System.nanoTime()
+    time = System.nanoTime()
     closure.call()
-    now = System.nanoTime()
-    println now - start + " [ns]"
+    time = System.nanoTime() - time
+    println time.div(10e6) + " [ms]"
 }
 
 def duration = benchmark {
-    (0..100).inject(0) { sum, item ->
+    (0..1000).inject(0) { sum, item ->
         sum + item
     }
 }
