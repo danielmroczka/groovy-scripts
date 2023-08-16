@@ -2,7 +2,7 @@
  * Build trkseg based on GPS location and timestamp from EXIF stored in JPG files in current folder
  */
 @Grapes(
-    @Grab(group='com.drewnoakes', module='metadata-extractor', version='2.17.0')
+    @Grab(group='com.drewnoakes', module='metadata-extractor', version='2.18.0')
 )
 
 import com.drew.imaging.jpeg.*;
@@ -15,7 +15,8 @@ import groovy.xml.*
 import java.time.Instant
 import java.time.ZoneId
 
-def tree = new Node(null, "trkseg")
+def root = new Node(null, "gpx")
+def tree = new Node(root, "trkseg")
 
 new File(".").eachFileRecurse(FileType.FILES) { file ->
     if (file.name.toLowerCase().endsWith(".jpg")) {
@@ -27,7 +28,6 @@ def process(Node tree, File file) {
     def metadata = ImageMetadataReader.readMetadata(file);
     def gpsDirectory = metadata.getDirectoriesOfType(GpsDirectory.class);
     def node = new Node(tree, "trkpt", [lat: gpsDirectory.geoLocation.latitude[0], lon: gpsDirectory.geoLocation.longitude[0]])
-
     def exifData = metadata.getFirstDirectoryOfType(ExifSubIFDDirectory.class);
 
     if (exifData != null) {
@@ -37,4 +37,4 @@ def process(Node tree, File file) {
 }
 
 def file = new File("output.gpx")
-file.write(XmlUtil.serialize(tree))
+file.write(XmlUtil.serialize(root))
